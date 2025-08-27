@@ -520,12 +520,36 @@ The project includes clear, well-structured scripts and configuration files for 
 ### Case 1: Long horizon
 ![Long Horizon Demo](images/long_horizon.png)
 
+As shown in Fig, Lili's device stores 5G Kuan Shijie viewing history data, while the user's device completes gift purchasing. This demonstrates \textbf{cross-device multi-agent collaboration}, \textbf{user preference extraction}, and \textbf{cross-application decision-making}.
+
+After authorization verification, the Agent locates the history module and extracts key information from the most recent video. But raw video lists can't directly guide gift selection. Here, the Agent extracts IP keywords from "Crayon Shin-chan" to infer potential interests. This transcends simple data transfer by achieving a leap from data to preference to demand through content understanding.
+
+On the user's device, the Agent receives "Crayon Shin-chan" keywords and launches Taobao. It locates relevant gifts through search, maintaining process coherence across multiple operations.
+
+Critically, the task highlights the core value of cross-device service—breaking device barriers to achieve precise data-to-service docking. Traditional scenarios require manual preference inquiry and product search; the Agent automates the entire process from data collection to product recommendation.
+
 ### Case 2: Double end
 ![Cross Device Demo](images/double_end.png)
+
+As shown in Fig, Lili's device stores 5G Kuan Shijie viewing history data, while the user's device completes gift purchasing. This demonstrates \textbf{cross-device multi-agent collaboration}, \textbf{user preference extraction}, and \textbf{cross-application decision-making}.
+
+After authorization verification, the Agent locates the history module and extracts key information from the most recent video. But raw video lists can't directly guide gift selection. Here, the Agent extracts IP keywords from "Crayon Shin-chan" to infer potential interests. This transcends simple data transfer by achieving a leap from data to preference to demand through content understanding.
+
+On the user's device, the Agent receives "Crayon Shin-chan" keywords and launches Taobao. It locates relevant gifts through search, maintaining process coherence across multiple operations.
+
+Critically, the task highlights the core value of cross-device service—breaking device barriers to achieve precise data-to-service docking. Traditional scenarios require manual preference inquiry and product search; the Agent automates the entire process from data collection to product recommendation.
 
 ### Case 3: Triple end
 
 ![Triple end Demo](images/triple_end.png)
+
+As shown in Fig. \ref{fig:triple_end(fanfan)}, Lili's and Fanfan's devices store viewing history data, while the user's device completes gift purchasing. This extends agent capabilities \textbf{from individual users to multi-user collaborative operations}. This isn't simple technical stacking but a paradigm shift from personal assistants to distributed collaboration networks.
+
+Each agent focuses on parsing its own 5G Kuan Shijie history to \textbf{extract individual preferences}. The user's agent integrates preference data from both ends to drive targeted gift selection. In this architecture, each agent has independent computational space and decision boundaries, preserving core attributes representing individual intent while breaking limitations through collaboration.
+
+The multi-device task confirms the feasibility of a \textbf{distributed intelligence system}. First, addressing reasoning and coordination challenges with incomplete information: Lili's and Fanfan's agents only know their own task status; the user's agent cannot directly access raw data on other devices. Through \textbf{data desensitization and intent recognition mechanisms}, agents collaborate accurately despite information gaps.
+
+Second, addressing communication and negotiation mechanisms: agents achieve precise intent transmission through unified protocols despite heterogeneous systems. The successful execution validates that the \textbf{mobile agent system has upgraded from single-agent to a system-level architecture with multi-agent collaboration, distributed state modeling, and mechanism design capabilities}. This upgrade's core value enables intelligent services to break single-user boundaries and complete complex cross-domain long-horizon tasks through multiple autonomous agents collaborating—moving toward realizing the "theoretically expandable to massive terminals" vision of collective intelligence.
 
 </details>
 
