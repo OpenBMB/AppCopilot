@@ -5,6 +5,7 @@
 <p align="center">
     【English | <a href="readme/README-Chinese.md">Chinese</a>】
 </p>
+
 ## 🎨 Logo
 
 ![Emulator Demo](images/logo.png)
