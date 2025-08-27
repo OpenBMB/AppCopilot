@@ -452,22 +452,22 @@ bash eval.sh
 
 </details>
 
-## ✨ **Demo Cases**
+## ✨ **演示案例**
 
 <details>
 <summary>点击展开</summary>
 
 
 
-### Case 1: Long horizon
+### Case 1: 长程性任务
 
 ![Long Horizon Demo](../images/long_horizon_cn.png)
 
-### Case 2: Double end
+### Case 2: 跨端任务
 
 ![Cross Device Demo](../images/double_end_cn.png)
 
-### Case 3: Triple end
+### Case 3: 三端任务
 
 ![Triple end Demo](../images/triple_end_cn.png)
 
