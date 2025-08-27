@@ -461,15 +461,15 @@ bash eval.sh
 
 ### Case 1: Long horizon
 
-![Long Horizon Demo](images/long_horizon_cn.png)
+![Long Horizon Demo](../images/long_horizon_cn.png)
 
 ### Case 2: Double end
 
-![Cross Device Demo](images/double_end_cn.png)
+![Cross Device Demo](../images/double_end_cn.png)
 
 ### Case 3: Triple end
 
-![Triple end Demo](images/triple_end_cn.png)
+![Triple end Demo](../images/triple_end_cn.png)
 
 </details>
 
