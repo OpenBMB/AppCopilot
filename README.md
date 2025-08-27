@@ -522,8 +522,6 @@ The project includes clear, well-structured scripts and configuration files for 
 
 Fig shows the execution using the "search bar filtering" path, demonstrating **active control** over requirement boundaries. The core logic is **precise requirement decomposition**: first search "restaurant" for full coverage, then set "Nearby" distance filter, finally switch to "Highest Rating" sorting. Each step directly corresponds to core instruction conditions.
 
-The path difference reflects the Agent's dynamic balance between **"efficiency" and "accuracy"**. The recommendation path prioritizes efficiency when content matches requirements; the search path prioritizes accuracy when recommendation reliability is uncertain. This balancing depends on real-time judgment of requirement clarity and recommendation reliability.
-
 The task is successfully completed, demonstrating long horizon capabilities in complex application scenarios.
 
 ### Case 2: Double end
