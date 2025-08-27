@@ -510,6 +510,24 @@ The project includes clear, well-structured scripts and configuration files for 
 
 </details>
 
+## ✨ **Demo Cases**
+
+<details>
+<summary>Click to expand</summary>
+
+
+### Case 1: Long horizon
+![Long Horizon Demo](images/long_horizon.png)
+
+### Case 2: Double end
+![Cross Device Demo](images/double_end.png)
+
+### Case 3: Triple end
+
+![Triple end Demo](images/triple_end.png)
+
+</details>
+
 
 ## 🔎 Citation
 
