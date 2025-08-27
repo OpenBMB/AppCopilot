@@ -17,6 +17,9 @@ AppCopilot是一款以多模态大模型为基座、融合多智能体协作机�
 
 ## ⚡️ 复现指南
 
+<details>
+<summary>点击展开</summary>
+
 ### AppCopilot本地运行
 本节主要介绍如何通过API连接服务器上已经训好的模型，在本地运行 AppCopilot。
 
@@ -445,6 +448,30 @@ bash eval.sh
 | run_predict_minicpm.py | Python | 推理主程序 |
 | run_eval_agent.py | Python | 评测程序 |
 | utils | 文件夹 | 工具函数 |
+
+
+</details>
+
+## ✨ **Demo Cases**
+
+<details>
+<summary>点击展开</summary>
+
+
+
+### Case 1: Long horizon
+
+![Long Horizon Demo](images/long_horizon_cn.png)
+
+### Case 2: Double end
+
+![Cross Device Demo](images/double_end_cn.png)
+
+### Case 3: Triple end
+
+![Triple end Demo](images/triple_end_cn.png)
+
+</details>
 
 ## **⚖️ 授权许可**
 
