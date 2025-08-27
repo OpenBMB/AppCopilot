@@ -5,17 +5,18 @@
 <p align="center">
     【English| <a href="readme/README-Chinese.md">Chinese</a>】
 </p>
+## 🎨 Logo
 
+![Emulator Demo](images/logo.png)
 
 ## 📖 简介
 
 AppCopilot是一款以多模态大模型为基座、融合多智能体协作机制的通用型端侧智能助理。借助强大的多模态理解与生成能力，AppCopilot可理解文本、图像等多源信息，并作为智能中枢编排多个智能体协同完成复杂任务。通过端侧部署，AppCopilot不仅保障了用户数据隐私与本地实时性，还能在不同应用之间无缝切换，实现跨App操作和智能联动。更进一步，AppCopilot支持跨设备协作，让多手机甚至与PC等多终端之间形成智能互联，实现任务流转与信息同步。该作品展示了基于多模态大模型和多智能体技术，如何构建灵活、高效、安全的下一代通用型数字助理，赋能各类智能终端创新体验。
 
-## 🎨 Logo
-
-![Emulator Demo](images/logo.png)
-
 ## ⚡️ 复现指南
+
+<details>
+<summary>Click to expand</summary>
 
 ### AppCopilot本地运行
 本节主要介绍如何通过API连接服务器上已经训好的模型，在本地运行 AppCopilot。
@@ -445,6 +446,8 @@ bash eval.sh
 | run_predict_minicpm.py | Python | 推理主程序 |
 | run_eval_agent.py | Python | 评测程序 |
 | utils | 文件夹 | 工具函数 |
+
+</details>
 
 ## **⚖️ 授权许可**
 

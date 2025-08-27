@@ -5,21 +5,23 @@
 <p align="center">
     【English | <a href="readme/README-Chinese.md">Chinese</a>】
 </p>
+## 🎨 Logo
 
+![Emulator Demo](images/logo.png)
 
 ## 📖 Overview
 
 **AppCopilot** is a general-purpose on-device intelligent assistant built on Multimodal Foundation Models (MFMs) and a Multi-Agent Collaboration (MAC) framework. Leveraging advanced multimodal understanding and generation, it can process text, images, and other inputs, orchestrating multiple Autonomous Agents to accomplish complex tasks. Running on-device ensures both user data privacy and real-time responsiveness, while enabling seamless cross-app operations and intelligent automation. AppCopilot also supports cross-device collaboration, allowing smartphones, PCs, and other terminals to stay interconnected for smooth task handoff and synchronized information—demonstrating how multimodal and multi-agent technologies can power flexible, efficient, and secure next-generation digital assistants.
-
-## 🎨 Logo
-
-![Emulator Demo](images/logo.png)
 
 ## 🎉 News
 
 At 2025-8-15, we are excited to announce the release of AppCopilot. AppCopilot is a general-purpose, on-device intelligent assistant that understands text and images, coordinates agents to complete complex tasks, works seamlessly across apps, and supports secure, real-time, cross-device collaboration.
 
 ## ⚡️ Quickstart
+
+<details>
+<summary>Click to expand</summary>
+
 
 ### AppCopilot Local Execution
 
@@ -29,15 +31,14 @@ This section mainly describes how to connect to a pre-trained model deployed on 
 
 Table 1 shows the relevant dependency requirements for the local environment.
 
-| **Dependency**     | **Specific Requirement**                                     |
-| ------------------ | ------------------------------------------------------------ |
-| Operating System   | OS that supports Android Studio                              |
-| Software           | Install Android Studio                                       |
-| Python Environment | Install Python (recommended version: 3.12)                   |
-| Network            | Disable local VPN, ensure the server-side vLLM API can be connected properly |
+| **Dependency** | **Specific Requirement** |
+| -------------- | ------------------------ |
+| Operating System | OS that supports Android Studio |
+| Software | Install Android Studio |
+| Python Environment | Install Python (recommended version: 3.12) |
+| Network | Disable local VPN, ensure the server-side vLLM API can be connected properly |
 
 ##### Install Android Studio
-
 Android Studio is an integrated development environment for the Android platform. You can download it from its [official website](https://developer.android.com/studio).
 
 ---
@@ -46,23 +47,20 @@ Android Studio is an integrated development environment for the Android platform
 
 Table 2 shows the relevant dependency requirements for the server environment.
 
-| **Dependency**   | **Specific Requirement**                                     |
-| ---------------- | ------------------------------------------------------------ |
-| Operating System | OS that supports Conda and vLLM                              |
-| Software         | Install Conda, create vLLM environment, and install vLLM dependencies |
+| **Dependency** | **Specific Requirement** |
+| -------------- | ------------------------ |
+| Operating System | OS that supports Conda and vLLM |
+| Software | Install Conda, create vLLM environment, and install vLLM dependencies |
 
 ##### Install Conda
-
 Conda is an open-source, cross-platform package and environment manager for quickly installing, running, and managing multi-language software packages and their dependencies. Download from its [official website](https://anaconda.org/anaconda/conda).  
 
 After installing Conda, configure a Python virtual environment (recommended version: 3.10):
-
 ```bash
 conda create --name vllm_env python=3.10
 ```
 
 ##### Install vLLM
-
 [vLLM Documentation](https://docs.vllm.ai/en/latest/) — vLLM is an open-source, high-performance framework and engine for LLM inference and serving. It enables faster responses for generative AI applications while reducing cost and improving efficiency. Install version 0.9.1 as follows:
 
 ```bash
@@ -70,9 +68,7 @@ pip install vllm==0.9.1
 ```
 
 ##### Other Configurations
-
 To enable AppCopilot to connect to the server via API, configure the remaining server environment dependencies as follows:
-
 ```bash
 pip install git+https://github.com/huggingface/transformers@f3f6c86582611976e72be054675e2bf0abb5f775
 pip install accelerate
@@ -86,7 +82,6 @@ git clone https://huggingface.co/Qwen/Qwen-VL-7B
 #### Clone the Code
 
 First, clone the repository to the local machine and add the relevant files:
-
 ```bash
 mkdir AppCopilot
 cd AppCopilot
@@ -96,7 +91,6 @@ git clone https://github.com/GUIAgents-Dev/GUI-Android.git .
 To improve the agent's ability to operate on Android devices, install YADB (Yet Another Debug Bridge) to enhance native ADB (Android Debug Bridge) functionality. YADB overcomes limitations of ADB in text input, screenshot capture, and UI layout extraction, providing more efficient and precise operations.
 
 In the current directory, execute:
-
 ```bash
 git clone https://github.com/ysbing/YADB.git ./YADB
 ```
@@ -108,27 +102,21 @@ git clone https://github.com/ysbing/YADB.git ./YADB
 ##### Configure `adb` Environment Variable
 
 1. **Windows**:  
-
    - Right-click **This PC**, choose **Properties**, click **Advanced system settings**, and then click **Environment Variables**.  
    - In **System Variables**, click **New**, enter variable name `adb` and set the variable value to the directory path where adb is located (e.g., `C:\Android\Sdk\platform-tools`).  
    - Then in the **System Variables** list, find `Path`, click **Edit**, **New**, and enter `%adb%`.
 
 2. **macOS/Linux**:  
-
    - Edit `~/.bashrc` or `~/.bash_profile` and add the adb path at the end of the file:
-
      ```bash
      /Users/user/Android/Sdk/platform-tools
      ```
-
    - Save and run `source ~/.bashrc` or `source ~/.bash_profile` to apply changes.
 
 After configuration, run:
-
 ```bash
 adb version
 ```
-
 If adb version info is printed, the configuration is successful.
 
 ##### Configure `emulator` Environment Variable
@@ -136,22 +124,18 @@ If adb version info is printed, the configuration is successful.
 Configuration is similar to adb:
 
 1. **Windows**:  
-
+   
    - Same as adb, but set variable name `emulator` and value to emulator directory (e.g., `C:\Android\Sdk\emulator`).  
    - Add `%emulator%` to `Path`.
-
+   
 2. **macOS/Linux**:  
-
    - Edit `~/.bashrc` or `~/.bash_profile` and add:
-
      ```bash
      /Users/user/Library/Android/Sdk/emulator
      ```
-
    - Save and run `source ~/.bashrc` or `source ~/.bash_profile`.
 
 Check with:
-
 ```bash
 emulator version
 ```
@@ -165,23 +149,17 @@ emulator version
 We use Android Studio to create and manage Android Virtual Devices (AVD). See [official docs](https://developer.android.com/studio/run/managing-avds).
 
 1. **List emulator names**:
-
 ```bash
 emulator -list-avds
 ```
-
 2. **Configure emulator network**:
-
 ```bash
 emulator -avd <android> -dns-server <Local DNS Server>
 ```
-
 Replace `<android>` with emulator name and `<Local DNS Server>` with your DNS. First time specify DNS, later can simply:
-
 ```bash
 emulator -avd <android>
 ```
-
 If snapshot errors occur, add `-no-snapshot-load`.
 
 After completing the above configuration, the Android emulator should run locally with an interactive GUI, support mouse operations, and access the internet via host network sharing. The following figure shows the project page after launching the Android virtual machine.
@@ -195,25 +173,20 @@ Besides AVD, the agent can operate a physical Android phone via adb. Example wit
 1. Enable Developer Mode: Settings → My Device → All Specs → Tap MIUI Version 7 times.
 2. Enable USB Debugging: Settings → Developer Options → USB Debugging.
 3. Connect phone via USB, then run:
-
 ```bash
 adb devices
 ```
-
 If your device serial appears, adb connection is ready.
 
 ---
 
 #### Configure Python Dependencies
-
 Recommended Python 3.12. Navigate to the previously cloned `GUI-Android` directory on your local machine, and install the following dependencies:
-
 ```bash
 pip install -r requirements.txt
 ```
 
 #### Configure Model API Keys
-
 Edit `./wrappers/constants.py`:
 
 
@@ -534,6 +507,9 @@ The project includes clear, well-structured scripts and configuration files for 
 | `run_predict_minicpm.py` | Python | Model inference                  |
 | `run_eval_agent.py`      | Python | Automated evaluation             |
 | `utils`                  | Folder | Called by `run_eval_agent.py`    |
+
+</details>
+
 
 ## 🔎 Citation
 
