@@ -543,7 +543,7 @@ Critically, the task highlights the core value of cross-device service—breakin
 
 ![Triple end Demo](images/triple_end.png)
 
-As shown in Fig. \ref{fig:triple_end(fanfan)}, Lili's and Fanfan's devices store viewing history data, while the user's device completes gift purchasing. This extends agent capabilities \textbf{from individual users to multi-user collaborative operations}. This isn't simple technical stacking but a paradigm shift from personal assistants to distributed collaboration networks.
+As shown in Fig, Lili's and Fanfan's devices store viewing history data, while the user's device completes gift purchasing. This extends agent capabilities \textbf{from individual users to multi-user collaborative operations}. This isn't simple technical stacking but a paradigm shift from personal assistants to distributed collaboration networks.
 
 Each agent focuses on parsing its own 5G Kuan Shijie history to \textbf{extract individual preferences}. The user's agent integrates preference data from both ends to drive targeted gift selection. In this architecture, each agent has independent computational space and decision boundaries, preserving core attributes representing individual intent while breaking limitations through collaboration.
 
