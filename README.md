@@ -520,13 +520,11 @@ The project includes clear, well-structured scripts and configuration files for 
 ### Case 1: Long horizon
 ![Long Horizon Demo](images/long_horizon.png)
 
-As shown in Fig, Lili's device stores 5G Kuan Shijie viewing history data, while the user's device completes gift purchasing. This demonstrates **cross-device multi-agent collaboration**, **user preference extraction**, and **cross-application decision-making**.
+Fig shows the execution using the "search bar filtering" path, demonstrating **active control** over requirement boundaries. The core logic is **precise requirement decomposition**: first search "restaurant" for full coverage, then set "Nearby" distance filter, finally switch to "Highest Rating" sorting. Each step directly corresponds to core instruction conditions.
 
-After authorization verification, the Agent locates the history module and extracts key information from the most recent video. But raw video lists can't directly guide gift selection. Here, the Agent extracts IP keywords from "Crayon Shin-chan" to infer potential interests. This transcends simple data transfer by achieving a leap from data to preference to demand through content understanding.
+The path difference reflects the Agent's dynamic balance between **"efficiency" and "accuracy"**. The recommendation path prioritizes efficiency when content matches requirements; the search path prioritizes accuracy when recommendation reliability is uncertain. This balancing depends on real-time judgment of requirement clarity and recommendation reliability.
 
-On the user's device, the Agent receives "Crayon Shin-chan" keywords and launches Taobao. It locates relevant gifts through search, maintaining process coherence across multiple operations.
-
-Critically, the task highlights the core value of cross-device service—breaking device barriers to achieve precise data-to-service docking. Traditional scenarios require manual preference inquiry and product search; the Agent automates the entire process from data collection to product recommendation.
+The task is successfully completed, demonstrating long horizon capabilities in complex application scenarios.
 
 ### Case 2: Double end
 ![Cross Device Demo](images/double_end.png)
