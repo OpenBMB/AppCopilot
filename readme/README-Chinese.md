@@ -13,7 +13,7 @@ AppCopilot是一款以多模态大模型为基座、融合多智能体协作机�
 
 ## 🎨 Logo
 
-![Emulator Demo](images/logo.png)
+![Emulator Demo](../images/logo.png)
 
 ## ⚡️ 复现指南
 
