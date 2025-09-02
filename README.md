@@ -6,7 +6,7 @@
 
 <div align="center">
   <img src="images/logo.png" alt="AppCopilot" width="600">
-</div
+</div>
 
 ## 📖 Overview
 
