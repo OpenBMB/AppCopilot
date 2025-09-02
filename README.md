@@ -546,6 +546,8 @@ The multi-device task confirms the feasibility of a **distributed intelligence s
 
 Second, addressing communication and negotiation mechanisms: agents achieve precise intent transmission through unified protocols despite heterogeneous systems. The successful execution validates that the **mobile agent system has upgraded from single-agent to a system-level architecture with multi-agent collaboration, distributed state modeling, and mechanism design capabilities**. This upgrade's core value enables intelligent services to break single-user boundaries and complete complex cross-domain long-horizon tasks through multiple autonomous agents collaborating—moving toward realizing the "theoretically expandable to massive terminals" vision of collective intelligence.
 
+For more examples, please refer to the original paper.
+
 ## 🔎 Citation
 ```
 @article{AppCopilot,
