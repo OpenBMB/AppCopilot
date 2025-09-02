@@ -514,14 +514,14 @@ The project includes clear, well-structured scripts and configuration files for 
 
 ## ✨ **Demo Cases**
 
-### Case 1: Long horizon
+### Case 1: Single device control
 ![Long Horizon Demo](images/long_horizon.png)
 
 Fig shows the execution using the "search bar filtering" path, demonstrating **active control** over requirement boundaries. The core logic is **precise requirement decomposition**: first search "restaurant" for full coverage, then set "Nearby" distance filter, finally switch to "Highest Rating" sorting. Each step directly corresponds to core instruction conditions.
 
 The task is successfully completed, demonstrating long horizon capabilities in complex application scenarios.
 
-### Case 2: Double end
+### Case 2: Two-device coordinated control
 ![Cross Device Demo](images/double_end.png)
 
 As shown in Fig, Lili's device stores 5G Kuan Shijie viewing history data, while the user's device completes gift purchasing. This demonstrates **cross-device multi-agent collaboration**, **user preference extraction**, and **cross-application decision-making**.
@@ -532,7 +532,7 @@ On the user's device, the Agent receives "Crayon Shin-chan" keywords and launche
 
 Critically, the task highlights the core value of cross-device service—breaking device barriers to achieve precise data-to-service docking. Traditional scenarios require manual preference inquiry and product search; the Agent automates the entire process from data collection to product recommendation.
 
-### Case 3: Triple end
+### Case 3: Three-device coordinated control
 
 ![Triple end Demo](images/triple_end.png)
 
