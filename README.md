@@ -1,18 +1,19 @@
 # AppCopilot: Toward General, Accurate, Long‑Horizon, and Efficient Mobile Agent
 
-## 🌐 Language
-
 <p align="center">
-    【English | <a href="readme/README-Chinese.md">Chinese</a>】
+    【English | <a href="readme/README-Chinese.md">中文</a>】
 </p>
-
-## 🎨 Logo
 
 ![Emulator Demo](images/logo.png)
 
 ## 📖 Overview
 
-**AppCopilot** is a general-purpose on-device intelligent assistant built on Multimodal Foundation Models (MFMs) and a Multi-Agent Collaboration (MAC) framework. Leveraging advanced multimodal understanding and generation, it can process text, images, and other inputs, orchestrating multiple Autonomous Agents to accomplish complex tasks. Running on-device ensures both user data privacy and real-time responsiveness, while enabling seamless cross-app operations and intelligent automation. AppCopilot also supports cross-device collaboration, allowing smartphones, PCs, and other terminals to stay interconnected for smooth task handoff and synchronized information—demonstrating how multimodal and multi-agent technologies can power flexible, efficient, and secure next-generation digital assistants.
+With the rapid evolution of large language models and multimodal foundation models, the mobile-agent landscape has proliferated without converging on the fundamental challenges. This position paper identifies four core problems that must be solved for mobile agents to deliver practical, scalable impact: (1) generalization across tasks, modalities, apps, and devices; (2) accuracy, specifically precise on-screen interaction and click targeting; (3) long-horizon capability for sustained, multi-step goals; and (4) efficiency, specifically high-performance runtime on resource-constrained devices.
+
+We present AppCopilot, a multimodal, multi-agent, general-purpose on-device assistant that operates across applications and constitutes a full-stack, closed-loop system from data to deployment. AppCopilot operationalizes this position through an end-to-end autonomous pipeline spanning data collection, training, deployment, high-quality and efficient inference, and PC/mobile application development. At the model layer, it integrates multimodal foundation models with robust Chinese–English support. At the reasoning and control layer, it combines chain-of-thought reasoning, hierarchical task planning and decomposition, and multi-agent collaboration. At the execution layer, it enables user personalization and experiential adaptation, voice interaction, function/tool calling, cross-app and cross-device orchestration, and comprehensive mobile app support. The system design incorporates profiling-driven optimization for latency, memory, and energy across heterogeneous hardware.
+Empirically, AppCopilot achieves significant improvements along all four dimensions: stronger generalization, higher-precision on-screen actions, more reliable long-horizon task completion, and faster, more resource-efficient runtime. 
+
+By articulating a cohesive position and a reference architecture that closes the loop from “data collection—training and deployment—high-quality, efficient inference—application development”, this paper offers a concrete roadmap for general-purpose digital assistants and provides actionable guidance for both academic research and industrial adoption.
 
 ## 🎉 News
 
@@ -513,10 +514,6 @@ The project includes clear, well-structured scripts and configuration files for 
 
 ## ✨ **Demo Cases**
 
-<details>
-<summary>Click to expand</summary>
-
-
 ### Case 1: Long horizon
 ![Long Horizon Demo](images/long_horizon.png)
 
@@ -547,16 +544,17 @@ The multi-device task confirms the feasibility of a **distributed intelligence s
 
 Second, addressing communication and negotiation mechanisms: agents achieve precise intent transmission through unified protocols despite heterogeneous systems. The successful execution validates that the **mobile agent system has upgraded from single-agent to a system-level architecture with multi-agent collaboration, distributed state modeling, and mechanism design capabilities**. This upgrade's core value enables intelligent services to break single-user boundaries and complete complex cross-domain long-horizon tasks through multiple autonomous agents collaborating—moving toward realizing the "theoretically expandable to massive terminals" vision of collective intelligence.
 
-</details>
-
-
 ## 🔎 Citation
-
-## ⚖️ License
-
-- Source Code Licensing: Our project's source code is licensed under the Apache 2.0 License. This license permits the use, modification, and distribution of the code, subject to certain conditions outlined in the Apache 2.0 License.
-- Data Licensing: The related data utilized in our project is licensed under CC BY-NC 4.0. This license explicitly permits non-commercial use of the data. We would like to emphasize that any models trained using these datasets should strictly adhere to the non-commercial usage restriction and should be employed exclusively for research purposes.
+```
+@article{AppCopilot,
+    title = {AppCopilot: Toward General, Accurate, Long‑Horizon, and Efficient Mobile Agent},
+    author = {Jingru Fan and Yufan Dang and Jingyao Wu and Huatao Li and Runde Yang and Xiyuan Yang and Yuheng Wang and Zhong Zhang and Yaxi Lu and Yankai Lin and Zhiyuan Liu and Dahai Li and Chen Qian},
+    journal = {arXiv preprint arXiv:******},
+    url = {https://arxiv.org/abs/******},
+    year = {2025}
+}
+```
 
 ## 📬 Contact
 
-If you have any questions, feedback, or would like to get in touch, please feel free to reach out to us via email at [qianc62@gmail.com](mailto:qianc62@gmail.com)
+If you have any questions, feedback, or would like to get in touch, please feel free to reach out to us via email at [qianc@sjtu.edu.cn](mailto:qianc@sjtu.edu.cn)
