@@ -4,7 +4,9 @@
     【English | <a href="readme/README-Chinese.md">中文</a>】
 </p>
 
-![Emulator Demo](images/logo.png)
+<div align="center">
+  <img src="images/logo.png" alt="AppCopilot" width="600">
+</div
 
 ## 📖 Overview
 
