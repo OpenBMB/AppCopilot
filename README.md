@@ -362,7 +362,7 @@ For more examples, please refer to the original paper.
 ```
 @article{AppCopilot,
     title = {AppCopilot: Toward General, Accurate, Long‑Horizon, and Efficient Mobile Agent},
-    author = {Jingru Fan and Yufan Dang and Jingyao Wu and Huatao Li and Runde Yang and Xiyuan Yang and Yuheng Wang and Zhong Zhang and Yaxi Lu and Yankai Lin and Zhiyuan Liu and Dahai Li and Chen Qian},
+    author = {Jingru Fan and Yufan Dang and Jingyao Wu and Huatao Li and Runde Yang and Xiyuan Yang and Yuheng Wang and Chen Qian},
     journal = {arXiv preprint arXiv:2509.02444},
     url = {https://arxiv.org/abs/2509.02444},
     year = {2025}
