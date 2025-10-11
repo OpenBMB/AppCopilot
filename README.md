@@ -1,7 +1,7 @@
 # AppCopilot: Toward General, Accurate, Long‑Horizon, and Efficient Mobile Agent
 
 <p align="center">
-    【English | <a href="readme/README-Chinese.md">中文</a>】
+    【English | <a href="readme/README_chinese.md">中文</a>】
 </p>
 
 <div align="center">
