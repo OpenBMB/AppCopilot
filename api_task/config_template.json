@@ -1,0 +1,16 @@
+[
+    {
+        "config_name": "email",
+        "sender_email": "todo",
+        "sender_password": "todo",
+        "smtp_server": "mail.sjtu.edu.cn",
+        "smtp_port": 465
+    },
+    {
+        "config_name": "bilibili",
+        "SESSDATA": "todo",
+        "BILI_JCT": "todo",
+        "BUVID3": "todo",
+        "dedeuserid": "todo"
+    }
+]

@@ -1,0 +1,18 @@
+{
+    "instructions": [
+        {
+            "instruction": "请帮我把bilibili的老番茄的前几个视频标题进行提取，并将发给微信联系人lht",
+            "steps": [
+                "进入bilibili的老番茄主页",
+                "发送消息给微信联系人lht，消息是上一步提取的结果"
+            ]
+        },
+        {
+            "instruction": "请帮我把bilibili的李子柒的前几个视频标题进行提取，并将发给微信联系人lht",
+            "steps": [
+                "进入bilibili的李子柒主页",
+                "然后发送消息给微信联系人lht，消息是上一步提取的结果"
+            ]
+        }
+    ]
+}
