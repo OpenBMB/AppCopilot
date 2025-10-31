@@ -192,11 +192,11 @@ vllm serve /your/model/path \
   --port 8001
 ```
 
-服务器端Qwen-VL-7B模型vLLM服务启动:
+服务器端Qwen2.5-VL-7B-Instruct模型vLLM服务启动:
 ```bash
-#/your/model/path替换为实际的Qwen-VL-7B模型路径
+#/your/model/path替换为实际的Qwen2.5-VL-7B-Instruct模型路径
 vllm serve /your/model/path \
-  --served-model-name AppCopilot \
+  --served-model-name Qwen2.5-VL-7B-Instruct \
   --tensor-parallel-size 1 \      
   --trust-remote-code \
   --gpu-memory-utilization 0.9 \

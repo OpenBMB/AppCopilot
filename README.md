@@ -206,11 +206,11 @@ vllm serve /your/model/path \
   --port 8001
 ```
 
-Start the server-side Qwen-VL-7B model vLLM service:
+Start the server-side Qwen2.5-VL-7B-Instruct model vLLM service:
 ```bash
-#/your/model/path replace with actual Qwen-VL-7B model path
+#/your/model/path replace with actual Qwen2.5-VL-7B-Instruct model path
 vllm serve /your/model/path \
-  --served-model-name AppCopilot \
+  --served-model-name Qwen2.5-VL-7B-Instruct \
   --tensor-parallel-size 1 \      
   --trust-remote-code \
   --gpu-memory-utilization 0.9 \

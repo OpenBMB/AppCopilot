@@ -32,13 +32,13 @@ def compact_json_dumps(obj):
 
 
 # ----- model config -----
-MODEL_EXTRACT = "deepseek-v3-250324"
+MODEL_EXTRACT = "Qwen2.5-VL-7B-Instruct"
 ERROR_CALLING_LLM = "Error calling LLM"
 MODEL_NOT_FOUND = "LLM not found"
 END_POINT = "http://localhost:8001/v1/chat/completions"
 PORTS = [8002, 8003, 8004]
-CLIENT_API_KEY = "sk-y4nJGOZwMV7cYGgqEd3fF33321014fE0A2E1E51268E6470d"
-CLIENT_BASE_URL = "https://yeysai.com/v1/"
+CLIENT_API_KEY = "switch to your own api key"
+CLIENT_BASE_URL = "switch to your own base url"
 CLIENT = OpenAI(
     api_key=CLIENT_API_KEY,
     base_url=CLIENT_BASE_URL,
