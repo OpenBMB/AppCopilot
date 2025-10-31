@@ -80,7 +80,7 @@ pip install git+https://github.com/huggingface/transformers@f3f6c86582611976e72b
 pip install accelerate
 pip install qwen-vl-utils
 pip install openai
-git clone https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
+git clone https://huggingface.co/Qwen/Qwen-VL-7B
 ```
 
 #### Clone the Code
@@ -172,7 +172,7 @@ pip install -r requirements.txt
 In the local code file `./wrappers/constants.py`, users need to manually configure the LLM key for future model calls:
 ```bash
 # ----- model config -----
-MODEL_EXTRACT = "Qwen-VL-7B"
+MODEL_EXTRACT = "Qwen2.5-VL-7B-Instruct"
 ERROR_CALLING_LLM = "Error calling LLM"
 MODEL_NOT_FOUND = "LLM not found"
 
