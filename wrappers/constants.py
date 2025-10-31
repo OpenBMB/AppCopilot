@@ -32,7 +32,7 @@ def compact_json_dumps(obj):
 
 
 # ----- model config -----
-MODEL_EXTRACT = "Qwen2.5-VL-7B-Instruct"
+MODEL_EXTRACT = "AppCopilot"
 ERROR_CALLING_LLM = "Error calling LLM"
 MODEL_NOT_FOUND = "LLM not found"
 END_POINT = "http://localhost:8001/v1/chat/completions"

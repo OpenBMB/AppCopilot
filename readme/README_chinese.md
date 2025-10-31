@@ -159,7 +159,7 @@ pip install -r requirements.txt
 在本地代码文件 `./wrappers/constants.py` 中，需要用户手动配置 LLM 密钥，以便后续模型调用过程。
 ```bash
 # ----- model config -----
-MODEL_EXTRACT = "Qwen2.5-VL-7B-Instruct"
+MODEL_EXTRACT = "AppCopilot"
 ERROR_CALLING_LLM = "Error calling LLM"
 MODEL_NOT_FOUND = "LLM not found"
 

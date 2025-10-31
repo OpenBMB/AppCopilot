@@ -172,7 +172,7 @@ pip install -r requirements.txt
 In the local code file `./wrappers/constants.py`, users need to manually configure the LLM key for future model calls:
 ```bash
 # ----- model config -----
-MODEL_EXTRACT = "Qwen2.5-VL-7B-Instruct"
+MODEL_EXTRACT = "AppCopilot"
 ERROR_CALLING_LLM = "Error calling LLM"
 MODEL_NOT_FOUND = "LLM not found"
 
