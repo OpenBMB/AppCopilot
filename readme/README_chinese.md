@@ -80,7 +80,7 @@ git clone https://huggingface.co/Qwen/Qwen-VL-7B
 ```bash
 mkdir AppCopilot
 cd AppCopilot
-git clone https://github.com/GUIAgents-Dev/GUI-Android.git .
+git clone https://github.com/OpenBMB/AppCopilot.git .
 ```
 
 为了提升智能体在安卓手机上的操作能力，本项目还需安装 YADB 工具以增强原生 ADB 功能。它解决了 ADB 在文本输入、截屏和 UI 布局提取等方面的局限性，提供了更高效、更精确的操作。执行以下命令：
@@ -183,7 +183,7 @@ CLIENT = OpenAI(api_key=CLIENT_API_KEY, base_url=CLIENT_BASE_URL)
 ```bash
 #/your/model/path替换为实际的GUI模型路径
 vllm serve /your/model/path \
-  --served-model-name AgentCPM-GUI \
+  --served-model-name AppCopilot \
   --tensor-parallel-size 1 \
   --trust-remote-code \
   --gpu-memory-utilization 0.9 \
@@ -196,7 +196,7 @@ vllm serve /your/model/path \
 ```bash
 #/your/model/path替换为实际的Qwen-VL-7B模型路径
 vllm serve /your/model/path \
-  --served-model-name AgentCPM-GUI \
+  --served-model-name AppCopilot \
   --tensor-parallel-size 1 \      
   --trust-remote-code \
   --gpu-memory-utilization 0.9 \

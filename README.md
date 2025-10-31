@@ -89,7 +89,7 @@ First, clone the folder from the remote repository to the local machine and add 
 ```bash
 mkdir AppCopilot
 cd AppCopilot
-git clone https://github.com/GUIAgents-Dev/GUI-Android.git .
+git clone https://github.com/OpenBMB/AppCopilot.git .
 ```
 
 To enhance the agent's ability to operate on Android phones, this project also requires the installation of the YADB tool to improve the native ADB functionality. It addresses the limitations of ADB in text input, screenshot capture, and UI layout extraction, providing more efficient and precise operations. Run the following command:
@@ -197,7 +197,7 @@ Start the server-side GUI model vLLM service:
 ```bash
 #/your/model/path replace with actual GUI model path
 vllm serve /your/model/path \
-  --served-model-name AgentCPM-GUI \
+  --served-model-name AppCopilot \
   --tensor-parallel-size 1 \
   --trust-remote-code \
   --gpu-memory-utilization 0.9 \
@@ -210,7 +210,7 @@ Start the server-side Qwen-VL-7B model vLLM service:
 ```bash
 #/your/model/path replace with actual Qwen-VL-7B model path
 vllm serve /your/model/path \
-  --served-model-name AgentCPM-GUI \
+  --served-model-name AppCopilot \
   --tensor-parallel-size 1 \      
   --trust-remote-code \
   --gpu-memory-utilization 0.9 \
