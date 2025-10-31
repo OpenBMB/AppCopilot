@@ -80,7 +80,7 @@ pip install git+https://github.com/huggingface/transformers@f3f6c86582611976e72b
 pip install accelerate
 pip install qwen-vl-utils
 pip install openai
-git clone https://huggingface.co/Qwen/Qwen-VL-7B
+git clone https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
 ```
 
 #### Clone the Code
