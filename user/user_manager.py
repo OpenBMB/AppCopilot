@@ -1,9 +1,11 @@
 import os
 import json
 import uuid
+import re
 import logging
 from datetime import datetime
 from typing import Optional, Dict, List, Any
+from pathlib import Path
 
 class UserManager:
     def __init__(self, storage_dir: str = "users_info"): 
@@ -21,11 +23,40 @@ class UserManager:
     
     def get_user_dir(self, user_id: str) -> str:
         """获取用户目录（不含文件名）"""
+        if not self._is_valid_user_id(user_id):
+            raise ValueError("Invalid user_id")
         return os.path.join(self.storage_dir, user_id)
         
     def _get_user_filepath(self, user_id: str) -> str:
         """获取用户文件路径"""
-        return os.path.join(self.get_user_dir(user_id), f"{user_id}.json")
+        return str(self._resolve_user_file(user_id))
+
+    def _is_valid_user_id(self, user_id: str) -> bool:
+        if not isinstance(user_id, str) or not user_id:
+            return False
+        # Allow UUIDs and simple names: letters, numbers, - and _
+        return re.fullmatch(r"[A-Za-z0-9_-]+", user_id) is not None
+
+    def _resolve_user_file(self, user_id: str) -> Path:
+        if not self._is_valid_user_id(user_id):
+            raise ValueError(f"Invalid user_id: {user_id}")
+
+        base = Path(self.storage_dir).resolve()
+        user_dir = base.joinpath(user_id)
+        filepath = user_dir.joinpath(f"{user_id}.json")
+
+        # Resolve the final path and ensure it's within base
+        try:
+            resolved = filepath.resolve()
+        except Exception as e:
+            raise ValueError(f"Could not resolve path for user_id {user_id}: {e}") from e
+
+        try:
+            resolved.relative_to(base)
+        except Exception:
+            raise ValueError(f"Path traversal detected for user_id: {user_id}")
+
+        return resolved
     
     
     def _load_user_data(self, user_id: str) -> Optional[Dict[str, Any]]:
