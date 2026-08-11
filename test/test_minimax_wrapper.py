@@ -95,6 +95,26 @@ def test_openai_transport_preserves_image_input():
     assert result[3]["STATUS"] == "finish"
 
 
+def test_openai_transport_accepts_previous_step_result():
+    client = FakeOpenAIClient()
+    wrapper = MiniMaxLlmWrapper(
+        api_key="test-key",
+        model_name="MiniMax-M3",
+        region="global_en",
+        transport="openai",
+        client=client,
+    )
+
+    wrapper.predict_mm(
+        "Continue the task",
+        [np.zeros((2, 2, 3), dtype=np.uint8)],
+        last_result={"account": "demo"},
+    )
+
+    text_block = client.chat.completions.kwargs["messages"][-1]["content"][0]
+    assert "Previous step result: {'account': 'demo'}" in text_block["text"]
+
+
 def test_anthropic_transport_uses_china_endpoint_and_image_format():
     session = FakeSession()
     wrapper = MiniMaxLlmWrapper(

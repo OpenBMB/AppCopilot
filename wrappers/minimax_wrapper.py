@@ -135,8 +135,14 @@ class MiniMaxLlmWrapper(OpenAILlmWrapper):
         return payload, messages[-1]["content"]
 
     def predict_mm(
-        self, text_prompt: str, images: list[np.ndarray]
+        self,
+        text_prompt: str,
+        images: list[np.ndarray],
+        last_result: Any = None,
     ) -> tuple[str, Any, Any, Any]:
+        if last_result is not None:
+            text_prompt += f"\nPrevious step result: {last_result}"
+
         if self.transport == "openai":
             return super().predict_mm(text_prompt, images)
 
