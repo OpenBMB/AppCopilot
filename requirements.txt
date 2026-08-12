@@ -28,5 +28,4 @@ requests-toolbelt==1.0.0
 SpeechRecognition==3.14.3
 websocket-client==1.8.0
 bilibili-api-python
-edge_tts
 image-hash==4.3.2
