@@ -52,21 +52,25 @@ class FakeSession:
 
 
 def test_minimax_registry_contains_current_models_and_regional_endpoints():
-    assert tuple(MINIMAX_MODELS) == ("MiniMax-M3", "MiniMax-M2.7")
+    assert tuple(MINIMAX_MODELS) == ("MiniMax-M3.1-Flash", "MiniMax-M3")
     assert MINIMAX_MODELS["MiniMax-M3"]["input_modalities"] == (
         "text",
         "image",
         "video",
     )
-    assert MINIMAX_MODELS["MiniMax-M2.7"]["input_modalities"] == ("text",)
+    assert MINIMAX_MODELS["MiniMax-M3.1-Flash"]["input_modalities"] == (
+        "text",
+        "image",
+        "video",
+    )
     assert MINIMAX_ENDPOINTS == {
         "global_en": {
             "openai": "https://api.minimax.io/v1",
             "anthropic": "https://api.minimax.io/anthropic",
         },
         "cn_zh": {
-            "openai": "https://api.minimaxi.com/v1",
-            "anthropic": "https://api.minimaxi.com/anthropic",
+            "openai": "https://api.minimax.cn/v1",
+            "anthropic": "https://api.minimax.cn/anthropic",
         },
     }
 
@@ -131,7 +135,7 @@ def test_anthropic_transport_uses_china_endpoint_and_image_format():
 
     assert (
         session.request["url"]
-        == "https://api.minimaxi.com/anthropic/v1/messages"
+        == "https://api.minimax.cn/anthropic/v1/messages"
     )
     assert session.request["headers"]["Authorization"] == "Bearer test-key"
     payload = session.request["json"]

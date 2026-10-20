@@ -378,9 +378,13 @@ class ArgumentHandler:
         )
         parser.add_argument(
             "--llm-model",
-            choices=tuple(MINIMAX_MODELS),
             default=DEFAULT_MINIMAX_MODEL,
-            help="MiniMax model used when --llm-provider=minimax.",
+            metavar="MODEL",
+            help=(
+                f"MiniMax model: {', '.join(MINIMAX_MODELS)} "
+                f"(default: {DEFAULT_MINIMAX_MODEL}). "
+                "Explicit legacy or custom model IDs are also accepted."
+            ),
         )
         parser.add_argument(
             "--llm-region",

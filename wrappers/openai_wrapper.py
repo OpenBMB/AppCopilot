@@ -68,6 +68,9 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
         if len(self.history) > max_msgs:
             self.history = self.history[-max_msgs:]
 
+    def _push_assistant_history(self, message: dict):
+        self._push_history("assistant", message["content"])
+
     def clear_history(self):
         """外部可手动清空记忆。"""
         self.history.clear()
@@ -158,7 +161,7 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
                 action = self.extract_and_validate_json(assistant_text)
 
                 self._push_history("user", messages[-1]["content"])
-                self._push_history("assistant", assistant_msg["content"])
+                self._push_assistant_history(assistant_msg)
 
                 return assistant_text, None, response, action
 

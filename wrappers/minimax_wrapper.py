@@ -1,3 +1,5 @@
+import base64
+import io
 import os
 import time
 from typing import Any
@@ -5,14 +7,15 @@ from typing import Any
 import numpy as np
 import requests
 from openai import OpenAI
+from PIL import Image
 
 from wrappers.constants import ERROR_CALLING_LLM
 from wrappers.openai_wrapper import OpenAILlmWrapper
 
 
 MINIMAX_MODELS = {
+    "MiniMax-M3.1-Flash": {"input_modalities": ("text", "image", "video")},
     "MiniMax-M3": {"input_modalities": ("text", "image", "video")},
-    "MiniMax-M2.7": {"input_modalities": ("text",)},
 }
 
 MINIMAX_ENDPOINTS = {
@@ -21,13 +24,13 @@ MINIMAX_ENDPOINTS = {
         "anthropic": "https://api.minimax.io/anthropic",
     },
     "cn_zh": {
-        "openai": "https://api.minimaxi.com/v1",
-        "anthropic": "https://api.minimaxi.com/anthropic",
+        "openai": "https://api.minimax.cn/v1",
+        "anthropic": "https://api.minimax.cn/anthropic",
     },
 }
 
 MINIMAX_TRANSPORTS = ("anthropic", "openai")
-DEFAULT_MINIMAX_MODEL = "MiniMax-M3"
+DEFAULT_MINIMAX_MODEL = "MiniMax-M3.1-Flash"
 DEFAULT_MINIMAX_REGION = "global_en"
 DEFAULT_MINIMAX_TRANSPORT = "anthropic"
 
@@ -50,8 +53,8 @@ class MiniMaxLlmWrapper(OpenAILlmWrapper):
         client: Any = None,
         session: Any = None,
     ):
-        if model_name not in MINIMAX_MODELS:
-            raise ValueError(f"Unsupported MiniMax model: {model_name}")
+        if not model_name or not model_name.strip():
+            raise ValueError("A MiniMax model ID is required.")
         if region not in MINIMAX_ENDPOINTS:
             raise ValueError(f"Unsupported MiniMax region: {region}")
         if transport not in MINIMAX_TRANSPORTS:
@@ -78,9 +81,23 @@ class MiniMaxLlmWrapper(OpenAILlmWrapper):
             history_size=history_size,
             client=client,
             supports_images=(
-                "image" in MINIMAX_MODELS[model_name]["input_modalities"]
+                "image" in MINIMAX_MODELS.get(model_name, {}).get("input_modalities", ())
             ),
         )
+
+    @classmethod
+    def encode_image(cls, image: np.ndarray) -> str:
+        """Match the JPEG media type used by both compatible transports."""
+        buffer = io.BytesIO()
+        Image.fromarray(image).convert("RGB").save(buffer, format="JPEG")
+        return base64.b64encode(buffer.getvalue()).decode("utf-8")
+
+    def _push_assistant_history(self, message: dict):
+        super()._push_assistant_history(message)
+        if self.use_history:
+            self.history[-1].update(
+                {key: value for key, value in message.items() if value is not None}
+            )
 
     @staticmethod
     def _to_anthropic_content(content: Any) -> Any:
@@ -89,7 +106,9 @@ class MiniMaxLlmWrapper(OpenAILlmWrapper):
 
         converted = []
         for block in content:
-            if block["type"] == "text":
+            if block["type"] in (
+                "text", "thinking", "redacted_thinking", "tool_use", "tool_result"
+            ):
                 converted.append(block)
                 continue
             if block["type"] != "image_url":
@@ -176,7 +195,7 @@ class MiniMaxLlmWrapper(OpenAILlmWrapper):
 
                 action = self.extract_and_validate_json(assistant_text)
                 self._push_history("user", history_content)
-                self._push_history("assistant", assistant_text)
+                self._push_history("assistant", response_data["content"])
                 return assistant_text, None, response_data, action
             except Exception as error:
                 print(error)

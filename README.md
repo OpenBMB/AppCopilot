@@ -192,12 +192,15 @@ the environment and select the model, region, and compatible transport:
 ```bash
 export MINIMAX_API_KEY=<YOUR_MINIMAX_API_KEY>
 python run_agent.py --custom-task --llm-provider minimax \
-  --llm-model MiniMax-M3 --llm-region global_en --llm-transport anthropic
+  --llm-model MiniMax-M3.1-Flash --llm-region global_en --llm-transport anthropic
 ```
 
-Use `cn_zh` for the China endpoint preset. `MiniMax-M3` accepts the screenshot
-input required by the GUI agent. `MiniMax-M2.7` is also registered for text-only
-calls and rejects image input explicitly.
+Use `cn_zh` for the China endpoint preset. `MiniMax-M3.1-Flash` is the default
+MiniMax model; `MiniMax-M3` is the other current choice. Both accept the screenshot
+input required by the GUI agent. The wrapper leaves thinking and effort unset,
+using the API defaults (Flash uses adaptive thinking). Explicit legacy or custom
+model IDs are forwarded unchanged for text calls; unlisted models reject image
+input because their image capability is unknown.
 
 ##### Download AppCopilot Model
 
@@ -258,7 +261,7 @@ python run_agent.py --custom-task
 | `--enable-vision-parser`      | flag   | Whether to call omniparser for coordinate calibration. |
 | `--read-final-page`           | flag   | Whether to enable reading the final page.      |
 | `--llm-provider <PROVIDER>`    | str    | Select `local` or `minimax` (default: `local`). |
-| `--llm-model <MODEL>`          | str    | Select `MiniMax-M3` or `MiniMax-M2.7`.         |
+| `--llm-model <MODEL>`          | str    | Select `MiniMax-M3.1-Flash` (default) or `MiniMax-M3`, or supply an explicit model ID. |
 | `--llm-region <REGION>`        | str    | Select `global_en` or `cn_zh`.                 |
 | `--llm-transport <TRANSPORT>`  | str    | Select `anthropic` or `openai`.                |
 
