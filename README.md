@@ -186,6 +186,22 @@ CLIENT_BASE_URL = "switch to your own base url"
 CLIENT = OpenAI(api_key=CLIENT_API_KEY, base_url=CLIENT_BASE_URL)
 ```
 
+To use MiniMax instead of the local model service, provide the API key through
+the environment and select the model, region, and compatible transport:
+
+```bash
+export MINIMAX_API_KEY=<YOUR_MINIMAX_API_KEY>
+python run_agent.py --custom-task --llm-provider minimax \
+  --llm-model MiniMax-M3.1-Flash --llm-region global_en --llm-transport anthropic
+```
+
+Use `cn_zh` for the China endpoint preset. `MiniMax-M3.1-Flash` is the default
+MiniMax model; `MiniMax-M3` is the other current choice. Both accept the screenshot
+input required by the GUI agent. The wrapper leaves thinking and effort unset,
+using the API defaults (Flash uses adaptive thinking). Explicit legacy or custom
+model IDs are forwarded unchanged for text calls; unlisted models reject image
+input because their image capability is unknown.
+
 ##### Download AppCopilot Model
 
 Download the pre-trained AppCopilot model from https://huggingface.co/ffcosmos/AppCopilot/tree/main and place it on the server to enable the next step of starting the vLLM inference service.
@@ -244,6 +260,10 @@ python run_agent.py --custom-task
 | `--show-tasks`                | flag   | Show all available predefined tasks and exit the program. |
 | `--enable-vision-parser`      | flag   | Whether to call omniparser for coordinate calibration. |
 | `--read-final-page`           | flag   | Whether to enable reading the final page.      |
+| `--llm-provider <PROVIDER>`    | str    | Select `local` or `minimax` (default: `local`). |
+| `--llm-model <MODEL>`          | str    | Select `MiniMax-M3.1-Flash` (default) or `MiniMax-M3`, or supply an explicit model ID. |
+| `--llm-region <REGION>`        | str    | Select `global_en` or `cn_zh`.                 |
+| `--llm-transport <TRANSPORT>`  | str    | Select `anthropic` or `openai`.                |
 
 
 ##### Multi-Device Cross-End Run

@@ -16,6 +16,15 @@ from log.log_replay import replay_log
 from log.experience_pool import ExperiencePool
 from wrappers.cpm_wrapper import MiniCPMWrapper
 from wrappers.constants import AVAILABLE_TASKS
+from wrappers.minimax_wrapper import (
+    DEFAULT_MINIMAX_MODEL,
+    DEFAULT_MINIMAX_REGION,
+    DEFAULT_MINIMAX_TRANSPORT,
+    MINIMAX_ENDPOINTS,
+    MINIMAX_MODELS,
+    MINIMAX_TRANSPORTS,
+    create_minimax_wrapper,
+)
 from audio.audio_play import play_random_audio, VoiceType
 from audio.tts import run_tts
 from user.ocr_service import OCRService
@@ -70,6 +79,10 @@ class GUITaskExecutor:
         read_final_page: bool = False,
         return_result: bool = False,
         serial: str = None,
+        llm_provider: str = "local",
+        llm_model: str = DEFAULT_MINIMAX_MODEL,
+        llm_region: str = DEFAULT_MINIMAX_REGION,
+        llm_transport: str = DEFAULT_MINIMAX_TRANSPORT,
     ):
         self.ocr_service = ocr_service
         self.enable_audio = enable_audio
@@ -77,8 +90,32 @@ class GUITaskExecutor:
         self.read_final_page = read_final_page
         self.return_result = return_result
         self.serial = serial
+        self.llm_provider = llm_provider
+        self.llm_model = llm_model
+        self.llm_region = llm_region
+        self.llm_transport = llm_transport
         self.device = None
         self.llm = None
+
+    def _create_llm(self):
+        if self.llm_provider == "minimax":
+            self.model_name = self.llm_model
+            return create_minimax_wrapper(
+                model_name=self.llm_model,
+                region=self.llm_region,
+                transport=self.llm_transport,
+                use_history=True,
+                history_size=2,
+            )
+
+        self.model_name = "AgentCPM-GUI"
+        return MiniCPMWrapper(
+            model_name=self.model_name,
+            temperature=1,
+            use_history=True,
+            history_size=2,
+            enable_vision_parser=self.enable_vision_parser,
+        )
 
     def _play_random_audio(self, type: VoiceType):
         if self.enable_audio:
@@ -100,14 +137,7 @@ class GUITaskExecutor:
         self.ocr_service.start(self.device)
 
         # Initialize the LLM wrapper
-        self.model_name = "AgentCPM-GUI"
-        self.llm = MiniCPMWrapper(
-            model_name=self.model_name,
-            temperature=1,
-            use_history=True,
-            history_size=2,
-            enable_vision_parser=self.enable_vision_parser,
-        )
+        self.llm = self._create_llm()
         is_finish = False
         result = None
         response = None
@@ -290,6 +320,10 @@ class ArgumentHandler:
             --enable-audio (store_true): Enable audio feedback (e.g., "swipe", "point").
             --enable-vision-parser (store_true): Enable vision parser for point fixing.
             --read-final-page (store_true): Read out final page content after task completion.
+            --llm-provider (str): Select the local or MiniMax provider.
+            --llm-model (str): Select a supported MiniMax model.
+            --llm-region (str): Select the global or China MiniMax endpoint.
+            --llm-transport (str): Select the compatible API transport.
 
         Returns:
             argparse.ArgumentParser: Configured argument parser.
@@ -336,6 +370,34 @@ class ArgumentHandler:
             action="store_true",
             help="Read out final page content after task completion.",
         )
+        parser.add_argument(
+            "--llm-provider",
+            choices=("local", "minimax"),
+            default="local",
+            help="LLM provider used by the GUI agent.",
+        )
+        parser.add_argument(
+            "--llm-model",
+            default=DEFAULT_MINIMAX_MODEL,
+            metavar="MODEL",
+            help=(
+                f"MiniMax model: {', '.join(MINIMAX_MODELS)} "
+                f"(default: {DEFAULT_MINIMAX_MODEL}). "
+                "Explicit legacy or custom model IDs are also accepted."
+            ),
+        )
+        parser.add_argument(
+            "--llm-region",
+            choices=tuple(MINIMAX_ENDPOINTS),
+            default=DEFAULT_MINIMAX_REGION,
+            help="MiniMax regional endpoint preset.",
+        )
+        parser.add_argument(
+            "--llm-transport",
+            choices=MINIMAX_TRANSPORTS,
+            default=DEFAULT_MINIMAX_TRANSPORT,
+            help="MiniMax compatible API transport.",
+        )
         return parser
 
     def parse_args(self):
@@ -355,6 +417,10 @@ class ArgumentHandler:
         if not args.custom_task and args.enable_voice_input:
             raise ValueError(
                 "Invalid argument: --enable-voice-input is only allowed with --custom-task mode."
+            )
+        if args.llm_provider == "minimax" and not os.getenv("MINIMAX_API_KEY"):
+            raise ValueError(
+                "MINIMAX_API_KEY must be set when --llm-provider=minimax."
             )
 
 
@@ -390,6 +456,10 @@ def main():
         enable_audio=args.enable_audio,
         enable_vision_parser=args.enable_vision_parser,
         read_final_page=args.read_final_page,
+        llm_provider=args.llm_provider,
+        llm_model=args.llm_model,
+        llm_region=args.llm_region,
+        llm_transport=args.llm_transport,
     )
 
     if args.enable_voice_input and args.custom_task:

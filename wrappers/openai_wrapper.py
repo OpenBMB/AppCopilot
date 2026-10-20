@@ -1,10 +1,11 @@
 import base64
+import json
 import time
 from typing import Any, Optional
+
 import numpy as np
 from PIL import Image
-import json
-from typing import Optional, Any
+
 from wrappers.base_wrapper import LlmWrapper, MultimodalLlmWrapper
 from wrappers.utils import array_to_jpeg_bytes
 from wrappers.constants import (
@@ -28,6 +29,8 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
         temperature: float = 0.1,
         use_history: bool = False,
         history_size: int = 10,
+        client: Any = None,
+        supports_images: bool = True,
     ):
         if max_retry <= 0:
             max_retry = 3
@@ -38,6 +41,8 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
         self.use_history = use_history
         self.history_size = max(history_size, 1)
         self.history: list[dict] = []
+        self.client = CLIENT if client is None else client
+        self.supports_images = supports_images
 
     @staticmethod
     def resize_image_pil(image: np.ndarray, max_size=640) -> np.ndarray:
@@ -62,6 +67,9 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
         max_msgs = self.history_size * 2
         if len(self.history) > max_msgs:
             self.history = self.history[-max_msgs:]
+
+    def _push_assistant_history(self, message: dict):
+        self._push_history("assistant", message["content"])
 
     def clear_history(self):
         """外部可手动清空记忆。"""
@@ -102,7 +110,11 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
         user_content = [
             {
                 "type": "text",
-                "text": f"<Question>{text_prompt}</Question>\n当前屏幕截图：(<image>./</image>)",
+                "text": (
+                    f"<Question>{text_prompt}</Question>\n当前屏幕截图：(<image>./</image>)"
+                    if images
+                    else f"<Question>{text_prompt}</Question>"
+                ),
             },
         ]
 
@@ -119,10 +131,16 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
         messages.append({"role": "user", "content": user_content})
         return messages
 
+    def _validate_images(self, images: list[np.ndarray]) -> None:
+        if len(images) > 1:
+            raise ValueError("Only one image is supported per request.")
+        if images and not self.supports_images:
+            raise ValueError(f"{self.model} does not support image input.")
+
     def predict_mm(
         self, text_prompt: str, images: list[np.ndarray]
-    ) -> tuple[str, Optional[bool], Any]:
-        assert len(images) == 1
+    ) -> tuple[str, Optional[bool], Any, Any]:
+        self._validate_images(images)
 
         messages = self._prepare_messages(text_prompt, images)
 
@@ -130,7 +148,7 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
         wait_seconds = self.RETRY_WAITING_SECONDS
         while counter > 0:
             try:
-                response = CLIENT.chat.completions.create(
+                response = self.client.chat.completions.create(
                     messages=messages,
                     model=self.model,
                     temperature=self.temperature,
@@ -143,7 +161,7 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
                 action = self.extract_and_validate_json(assistant_text)
 
                 self._push_history("user", messages[-1]["content"])
-                self._push_history("assistant", assistant_msg["content"])
+                self._push_assistant_history(assistant_msg)
 
                 return assistant_text, None, response, action
 
@@ -155,4 +173,4 @@ class OpenAILlmWrapper(LlmWrapper, MultimodalLlmWrapper):
                 print("Error calling LLM, will retry soon...")
                 print(e)
 
-        return ERROR_CALLING_LLM, None, None
+        return ERROR_CALLING_LLM, None, None, None
